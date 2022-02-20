@@ -1,6 +1,10 @@
 package main
 
-import "time"
+import (
+	"encoding/json"
+	"log"
+	"time"
+)
 
 type Result struct {
 	Data         []string `json:"data"`
@@ -8,6 +12,12 @@ type Result struct {
 	Tools        string   `json:"tool"`
 	Message      string   `json:"message"`
 	TimeSearch   string   `json:"time"`
+}
+
+func main() {
+	result := Search("w1", []string{"w1", "w2", "w1"})
+	data, _ := json.Marshal(result)
+	log.Println(string(data))
 }
 
 func Search(query string, keyWorks []string) Result {
